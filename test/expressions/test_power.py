@@ -5,17 +5,15 @@ from expressions.number import Number
 from expressions.sum import Sum
 from expressions.variable import Variable
 
-class TestPower(unittest.TestCase):
+def test_unique_variables_zero_variables():
+    exp = Power(Number(3), Number(4)).unique_variables()
+    assert exp == set()
 
-    def test_unique_variables_zero_variables(self):
-        vars = Power(Number(3), Number(4)).unique_variables()
-        self.assertEqual(vars, set())
+def test_unique_variables_one_variables():
+    exp = Power(Variable("x"), Number(4)).unique_variables()
+    assert exp == set("x")
 
-    def test_unique_variables_one_variables(self):
-        vars = Power(Variable("x"), Number(4)).unique_variables()
-        self.assertEqual(vars, set("x"))
-
-    def test_unique_variables_two_variables(self):
-        vars = Power(Variable("x"), Variable("y")).unique_variables()
-        self.assertEqual(vars, {"x", "y"})
+def test_unique_variables_two_variables():
+    exp = Power(Variable("x"), Variable("y")).unique_variables()
+    assert exp ==  {"x", "y"}
 

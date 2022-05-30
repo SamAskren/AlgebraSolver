@@ -2,11 +2,9 @@ import unittest
 
 from expressions.number import Number
 
-class TestNumber(unittest.TestCase):
-
-    def test_unique_variables(self):
-        vars = Number(4).unique_variables()
-        self.assertEqual(vars, set())
+def test_unique_variables():
+    exp = Number(4).unique_variables()
+    assert exp == set()
 
 
 

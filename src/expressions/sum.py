@@ -8,4 +8,4 @@ class Sum():
         return set().union(*[exp.unique_variables() for exp in self.exps])
 
     def __repr__(self):
-        return f"{self.exps[0]} + {self.exps[1]}"
+        return f"({self.exps[0]} + {self.exps[1]})"
