@@ -5,7 +5,7 @@ from expressions.number import Number
 from expressions.sum import Sum
 from expressions.variable import Variable
 
-class TestNumber(unittest.TestCase):
+class TestApply(unittest.TestCase):
 
     def test_unique_variables_number(self):
         vars = Apply("sin", Number(4)).unique_variables()

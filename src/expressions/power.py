@@ -7,3 +7,5 @@ class Power():
     def unique_variables(self):
         return self.base.unique_variables().union(self.exponent.unique_variables())
 
+    def __repr__(self):
+        return f"{self.base}^{self.exponent}"

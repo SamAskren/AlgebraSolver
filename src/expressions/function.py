@@ -6,3 +6,5 @@ class Function():
     def unique_variables(self):
         return set()
 
+    def __repr__(self):
+        return self.name

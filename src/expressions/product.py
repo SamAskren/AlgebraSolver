@@ -7,4 +7,5 @@ class Product():
     def unique_variables(self):
         return self.exp1.unique_variables().union(self.exp2.unique_variables())
 
-
+    def __repr__(self):
+        return f"{self.exp1} * {self.exp2}"

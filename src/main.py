@@ -1,5 +1,10 @@
-from expressions.expressions import Apply, Function, Number, Power, Product, Sum, Variable, distinct_variables
-
+from expressions.apply import Apply
+from expressions.function import Function
+from expressions.number import Number
+from expressions.power import Power
+from expressions.product import Product
+from expressions.sum import Sum
+from expressions.variable import Variable
 
 
 def print_hi(name):
@@ -14,5 +19,6 @@ if __name__ == '__main__':
                                         Power(Variable("x"), Number(2))),
                                 Variable("x")),
                             Apply(Function("sin"), Variable("x")))
+    print(pf_expression)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

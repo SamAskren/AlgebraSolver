@@ -8,3 +8,5 @@ class Variable():
         return {self.symbol}
 
 
+    def __repr__(self):
+        return self.symbol

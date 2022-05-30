@@ -5,3 +5,6 @@ class Number():
 
     def unique_variables(self):
         return set()
+
+    def __repr__(self):
+        return str(self.number)

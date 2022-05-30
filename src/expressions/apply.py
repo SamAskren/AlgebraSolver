@@ -7,3 +7,5 @@ class Apply():
     def unique_variables(self):
         return self.argument.unique_variables()
 
+    def __repr__(self):
+        return f"{self.function}({self.argument})"
