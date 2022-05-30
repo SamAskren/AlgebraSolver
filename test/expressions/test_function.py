@@ -6,6 +6,6 @@ class TestFunction(unittest.TestCase):
 
     def test_unique_variables_function(self):
         vars = Function("sin").unique_variables()
-        self.assertEquals(vars, set())
+        self.assertEqual(vars, set())
 
 

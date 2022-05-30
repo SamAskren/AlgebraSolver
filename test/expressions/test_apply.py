@@ -9,9 +9,9 @@ class TestApply(unittest.TestCase):
 
     def test_unique_variables_number(self):
         vars = Apply("sin", Number(4)).unique_variables()
-        self.assertEquals(vars, set())
+        self.assertEqual(vars, set())
 
     def test_unique_variables_sum(self):
         vars = Apply("sin", Sum(Variable("x"), Number(4))).unique_variables()
-        self.assertEquals(vars, set("x"))
+        self.assertEqual(vars, set("x"))
 
