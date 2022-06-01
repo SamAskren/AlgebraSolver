@@ -18,7 +18,8 @@ class Product():
         return self.exp1.unique_variables().union(self.exp2.unique_variables())
 
     def __repr__(self):
-        if isinstance(self.exp1, Number) and (isinstance(self.exp2, Sum) or isinstance(self.exp2, Variable) or isinstance( self.exp2, Power)):
+        if isinstance(self.exp1, Number) and \
+                (isinstance(self.exp2, Sum) or isinstance(self.exp2, Variable) or isinstance( self.exp2, Power)):
             return f"{self.exp1}{self.exp2}"
         else:
             return f"{self.exp1} * {self.exp2}"
