@@ -1,3 +1,3 @@
-# Default Python template
+# Algebra Solver
 
-Use this when creating a new python project
+An Algebra Solver
