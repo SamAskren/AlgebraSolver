@@ -1,10 +1,11 @@
+from expression import Expression
 from expressions.number import Number
 from expressions.power import Power
 from expressions.sum import Sum
 from expressions.variable import Variable
 
 
-class Product():
+class Product(Expression):
     def __init__(self, exp1, exp2):
         if isinstance(exp2, Number) and (isinstance(exp1, Sum) or isinstance(exp1, Variable) or isinstance( self.exp2, Power)):
             # swap the order if a variable or sum  is followed by a number
@@ -13,6 +14,9 @@ class Product():
         else:
             self.exp1 = exp1
             self.exp2 = exp2
+
+    def evaluate(self, **bindings):
+        return self.exp1.evaluate(**bindings) * self.exp2.evaluate(**bindings)
 
     def unique_variables(self):
         return self.exp1.unique_variables().union(self.exp2.unique_variables())

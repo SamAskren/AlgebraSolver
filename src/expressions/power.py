@@ -1,5 +1,7 @@
+from expression import Expression
 
-class Power():
+
+class Power(Expression):
     def __init__(self, base, exponent):
         self.base = base
         self.exponent = exponent

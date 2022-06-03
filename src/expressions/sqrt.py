@@ -1,5 +1,7 @@
+from expression import Expression
 
-class Sqrt():
+
+class Sqrt(Expression):
     def __init__(self, exp):
         self.exp = exp
 

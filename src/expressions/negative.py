@@ -1,4 +1,7 @@
-class Negative():
+from expression import Expression
+
+
+class Negative(Expression):
 
     def __init__(self, exp):
         self.exp = exp

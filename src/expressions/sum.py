@@ -1,5 +1,7 @@
+from expression import Expression
 
-class Sum():
+
+class Sum(Expression):
 
     def __init__(self, *exps):
         self.exps = exps
