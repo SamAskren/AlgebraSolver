@@ -18,4 +18,5 @@ class Variable(Expression):
     def __repr__(self):
         return self.symbol
 
-
+    def expand(self):
+        return self

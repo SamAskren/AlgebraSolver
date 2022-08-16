@@ -35,3 +35,6 @@ class Apply(Expression):
 
     def __repr__(self):
         return f"{self.function}({self.argument})"
+
+    def expand(self):
+        return Apply(self.function, self.argument.expand)

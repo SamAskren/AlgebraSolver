@@ -27,3 +27,15 @@ class Product(Expression):
             return f"{self.exp1}{self.exp2}"
         else:
             return f"{self.exp1} * {self.exp2}"
+
+    def expand(self):
+        expanded1 = self.exp1.expand()
+        expanded2 = self.exp2.expand()
+        if isinstance(expanded1, Sum):
+            return Sum(*[Product(e, expanded2).expand()
+                         for e in expanded1.exps])
+        elif isinstance(expanded2, Sum):
+            return Sum(*[Product(expanded1, e)
+                         for e in expanded2.exps])
+        else:
+            return Product(expanded1, expanded2)

@@ -13,3 +13,6 @@ class Number(Expression):
 
     def __repr__(self):
         return str(self.number)
+
+    def expand(self):
+        return self

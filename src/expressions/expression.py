@@ -5,5 +5,11 @@ class Expression(abc.ABC):
     @abc.abstractmethod
     def unique_variables(self):
         pass
-    @abstractmethod
+
+    @abc.abstractmethod
     def evaluate(self, **bindings):
+        pass
+
+    @abc.abstractmethod
+    def expand(self):
+        pass
