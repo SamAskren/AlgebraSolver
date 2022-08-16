@@ -1,5 +1,7 @@
+from expression import Expression
 
-class Function():
+
+class Function(Expression):
     def __init__(self, name):
         self.name = name
 
