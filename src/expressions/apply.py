@@ -1,6 +1,6 @@
 import math
 
-from expression import Expression
+from expressions.expression import Expression
 
 
 class Apply(Expression):

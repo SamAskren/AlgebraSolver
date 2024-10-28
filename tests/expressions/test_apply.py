@@ -1,6 +1,6 @@
 from expressions.apply import Apply
 from expressions.number import Number
-from expressions.sum import Sum
+from expressions.operations import Sum
 from expressions.variable import Variable
 
 

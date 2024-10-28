@@ -1,8 +1,8 @@
 import unittest
 
-from expressions.power import Power
+from expressions.operations import Power
 from expressions.number import Number
-from expressions.sum import Sum
+from expressions.operations import Sum
 from expressions.variable import Variable
 
 def test_unique_variables_zero_variables():

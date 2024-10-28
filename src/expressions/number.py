@@ -1,4 +1,4 @@
-from expression import Expression
+from expressions.expression import Expression
 
 
 class Number(Expression):

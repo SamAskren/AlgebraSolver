@@ -1,14 +1,14 @@
 from expressions.apply import Apply
 from expressions.function import Function
 from expressions.number import Number
-from expressions.power import Power
-from expressions.product import Product
-from expressions.sum import Sum
+from expressions.operations import Power
+from expressions.operations import Product
+from expressions.operations import Sum
 from expressions.variable import Variable
-from expressions.quotient import Quotient
-from expressions.difference import Difference
-from expressions.negative import Negative
-from expressions.sqrt import Sqrt
+from expressions.operations import Quotient
+from expressions.operations import Difference
+from expressions.operations import Negative
+from expressions.operations import Sqrt
 
 def print_expressions():
     pf_expression = Product(Sum(Product(Number(3),
