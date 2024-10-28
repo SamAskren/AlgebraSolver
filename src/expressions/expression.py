@@ -17,3 +17,8 @@ class Expression(abc.ABC):
     # @abc.abstractmethod
     # def simplify(self):
     #     pass
+
+    # https://stackoverflow.com/questions/390250/elegant-ways-to-support-equivalence-equality-in-python-classes
+    # @abc.abstractmethod
+    # def __eq__(self, other):
+    #     pass
