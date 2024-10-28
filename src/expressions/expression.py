@@ -13,3 +13,7 @@ class Expression(abc.ABC):
     @abc.abstractmethod
     def expand(self):
         pass
+
+    # @abc.abstractmethod
+    # def simplify(self):
+    #     pass
