@@ -23,7 +23,7 @@ class Expression(abc.ABC):
     #     pass
 
     # @abc.abstractmethod
-    # def contains(self, expression, var):
+    # def contains(self, var):
     #     pass
 
     # @abc.abstractmethod
