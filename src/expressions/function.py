@@ -1,3 +1,5 @@
+from expressions.expression import Expression
+
 
 class Function():
     def __init__(self, name):

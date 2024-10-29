@@ -1,7 +1,7 @@
 import unittest
 
 from expressions.number import Number
-from expressions.product import Product
+from expressions.operations import Product
 from expressions.variable import Variable
 
 def test_unique_variables_product_one_Variable():
