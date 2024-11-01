@@ -11,3 +11,7 @@ def test_unique_variables_product_one_Variable():
 def test_unique_variables_product_two_variables():
     exp = Product(Variable("x"), Variable("y")).unique_variables()
     assert exp == {"x", "y"}
+
+def test_evaluate_product():
+    exp = Product(Number(2), Number(7)).evaluate()
+    assert exp == 14

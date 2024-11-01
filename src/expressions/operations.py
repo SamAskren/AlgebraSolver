@@ -31,11 +31,17 @@ class Difference(Expression):
         self.exp1 = exp1
         self.exp2 = exp2
 
+    def evaluate(self, **bindings):
+        return self.exp1.evaluate(**bindings) - self.exp2.evaluate(**bindings)
+    
     def unique_variables(self):
         return self.exp1.unique_variables().union(self.exp2.unique_variables())
 
     def __repr__(self):
         return f"({self.exp1} - {self.exp2})"
+    
+    def expand(self):
+        return Difference(self.exp1.expand(), self.exp2.expand())
 
 class Negative(Expression):
 
@@ -50,6 +56,9 @@ class Negative(Expression):
 
     def __repr__(self):
          return f"-{self.exp}"
+    
+    def expand(self):
+        return Negative(self.exp.expand())
 
 class Product(Expression):
     def __init__(self, exp1, exp2):
@@ -100,7 +109,18 @@ class Quotient(Expression):
 
     def __repr__(self):
         return f"{self.numerator} / {self.denominator}"
-
+    
+    def expand(self):
+        expanded1 = self.exp1.expand()
+        expanded2 = self.exp2.expand()
+        if isinstance(expanded1, Sum):
+            return Sum(*[Quotient(e, expanded2).expand()
+                         for e in expanded1.exps])
+        elif isinstance(expanded2, Sum):
+            return Sum(*[Quotient(expanded1, e)
+                         for e in expanded2.exps])
+        else:
+            return Quotient(expanded1, expanded2)
 
 class Sqrt(Expression):
     def __init__(self, exp):
@@ -114,6 +134,9 @@ class Sqrt(Expression):
 
     def __repr__(self):
         return f"√({self.exp})"
+    
+    def expand(self):
+        return Sqrt(self.exp.expand())
 
 class Power(Expression):
     def __init__(self, base, exponent):
