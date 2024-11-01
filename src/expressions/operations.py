@@ -102,7 +102,11 @@ class Quotient(Expression):
         self.denominator = denominator
 
     def evaluate(self, **bindings):
-        return self.numerator.evaluate(**bindings) / self.denominator.evaluate(**bindings)
+        denomValue = self.denominator.evaluate(**bindings)
+        if denomValue == 0:
+            return float("nan")
+        else:
+            return self.numerator.evaluate(**bindings) / self.denominator.evaluate(**bindings)
 
     def unique_variables(self):
         return self.numerator.unique_variables().union(self.denominator.unique_variables())
