@@ -62,7 +62,7 @@ class Negative(Expression):
 
 class Product(Expression):
     def __init__(self, exp1, exp2):
-        if isinstance(exp2, Number) and (isinstance(exp1, Sum) or isinstance(exp1, Variable) or isinstance( self.exp2, Power)):
+        if isinstance(exp2, Number) and (isinstance(exp1, Sum) or isinstance(exp1, Variable) or isinstance(exp2, Power)):
             # swap the order if a variable or sum  is followed by a number
             self.exp1 = exp2
             self.exp2 = exp1

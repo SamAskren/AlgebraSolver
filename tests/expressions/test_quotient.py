@@ -1,4 +1,5 @@
 import unittest
+import math
 
 from expressions.number import Number
 from expressions.operations import Quotient
@@ -18,4 +19,4 @@ def test_evaluate_quotient():
 
 def test_evaluate_quotient_0():
     exp = Quotient(Number (4), Number (0)).evaluate()
-    assert exp == 0
+    assert math.isnan(exp)
