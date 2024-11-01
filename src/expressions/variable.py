@@ -20,3 +20,15 @@ class Variable(Expression):
 
     def expand(self):
         return self
+    
+    def contains(self, var):
+        if self.symbol.contains(var):
+            return True
+        else:
+            return False
+        
+    def __eq__(self, other):
+        if isinstance(other, Variable):
+            return self.symbol == other.symbol
+        else:
+            return False

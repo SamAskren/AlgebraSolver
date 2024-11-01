@@ -5,8 +5,6 @@ class Expression(abc.ABC):
     def unique_variables(self):
         pass
 
-
-
     @abc.abstractmethod
     def evaluate(self, **bindings):
         pass
@@ -22,9 +20,9 @@ class Expression(abc.ABC):
     # def __eq__(self, other):
     #     pass
 
-    # @abc.abstractmethod
-    # def contains(self, var):
-    #     pass
+    @abc.abstractmethod
+    def contains(self, var):
+        pass
 
     # @abc.abstractmethod
     # def simplify(self):

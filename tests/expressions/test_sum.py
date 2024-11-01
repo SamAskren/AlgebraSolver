@@ -25,3 +25,7 @@ def test_evaluate_sum_three_numbers():
 def test_evaluate_sum_ten_numbers():
     exp = Sum(Number (3), Number (1), Number (4), Number (1), Number (5), Number (9), Number (2), Number (6), Number (5), Number (3)).evaluate()
     assert exp == 39
+
+def test_equal_sum_two_variables():
+    exp = Sum(Variable("x"), Variable("y")).__eq__()
+    assert exp == {"x", "y"}
