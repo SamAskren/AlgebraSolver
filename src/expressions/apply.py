@@ -38,3 +38,6 @@ class Apply(Expression):
 
     def expand(self):
         return Apply(self.function, self.argument.expand)
+    
+    def contains(self, var):
+        return self.argument.contains(var)

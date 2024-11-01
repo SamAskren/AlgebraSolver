@@ -23,7 +23,21 @@ class Sum(Expression):
 
     def expand(self):
         return Sum(*[exp.expand() for exp in self.exps])
-
+    
+    def contains(self, var):
+        for exp in self.exps:
+            if exp.contains(var):
+                return True
+        return False
+    
+    def __eq__(self, other):
+        if isinstance(other, Sum):
+            sum1 = set(self.exps)
+            sum2 = set(other.exps)
+            return sum1 == sum2
+            
+        else:
+            return False
 
 class Difference(Expression):
 
@@ -42,6 +56,14 @@ class Difference(Expression):
     
     def expand(self):
         return Difference(self.exp1.expand(), self.exp2.expand())
+    
+    def contains(self, var):
+        if self.exp1.contains(var):
+            return True
+        elif self.exp2.contains(var):
+            return True
+        else:
+            return False
 
 class Negative(Expression):
 
@@ -59,10 +81,16 @@ class Negative(Expression):
     
     def expand(self):
         return Negative(self.exp.expand())
+    
+    def contains(self, var):
+        if self.exp.contains(var):
+            return True
+        else:
+            return False
 
 class Product(Expression):
     def __init__(self, exp1, exp2):
-        if isinstance(exp2, Number) and (isinstance(exp1, Sum) or isinstance(exp1, Variable) or isinstance( self.exp2, Power)):
+        if isinstance(exp2, Number) and (isinstance(exp1, Sum) or isinstance(exp1, Variable) or isinstance(exp2, Power)):
             # swap the order if a variable or sum  is followed by a number
             self.exp1 = exp2
             self.exp2 = exp1
@@ -94,6 +122,18 @@ class Product(Expression):
                          for e in expanded2.exps])
         else:
             return Product(expanded1, expanded2)
+        
+    def contains(self, var):
+        if self.exp1.contains(var):
+            return True
+        elif self.exp2.contains(var):
+            return True
+        else:
+            return False
+        
+    # def simplify(self):
+    #     return super().simplify()
+    
 
 
 class Quotient(Expression):
@@ -102,7 +142,11 @@ class Quotient(Expression):
         self.denominator = denominator
 
     def evaluate(self, **bindings):
-        return self.numerator.evaluate(**bindings) / self.denominator.evaluate(**bindings)
+        denomValue = self.denominator.evaluate(**bindings)
+        if denomValue == 0:
+            return float("nan")
+        else:
+            return self.numerator.evaluate(**bindings) / self.denominator.evaluate(**bindings)
 
     def unique_variables(self):
         return self.numerator.unique_variables().union(self.denominator.unique_variables())
@@ -111,16 +155,24 @@ class Quotient(Expression):
         return f"{self.numerator} / {self.denominator}"
     
     def expand(self):
-        expanded1 = self.exp1.expand()
-        expanded2 = self.exp2.expand()
-        if isinstance(expanded1, Sum):
-            return Sum(*[Quotient(e, expanded2).expand()
-                         for e in expanded1.exps])
-        elif isinstance(expanded2, Sum):
-            return Sum(*[Quotient(expanded1, e)
-                         for e in expanded2.exps])
+        expandedNum = self.numerator.expand()
+        expandedDenom = self.denominator.expand()
+        if isinstance(expandedNum, Sum):
+            return Sum(*[Quotient(e, expandedDenom).expand()
+                         for e in expandedNum.exps])
+        elif isinstance(expandedDenom, Sum):
+            return Sum(*[Quotient(expandedNum, e)
+                         for e in expandedDenom.exps])
         else:
-            return Quotient(expanded1, expanded2)
+            return Quotient(expandedNum, expandedDenom)
+        
+    def contains(self, var):
+        if self.numerator.contains(var):
+            return True
+        elif self.denominator.contains(var):
+            return True
+        else:
+            return False
 
 class Sqrt(Expression):
     def __init__(self, exp):
@@ -137,6 +189,12 @@ class Sqrt(Expression):
     
     def expand(self):
         return Sqrt(self.exp.expand())
+    
+    def contains(self, var):
+        if self.exp.contains(var):
+            return True
+        else:
+            return False
 
 class Power(Expression):
     def __init__(self, base, exponent):
@@ -167,3 +225,10 @@ class Power(Expression):
         else:
             return Power(base_expanded, self.exponent)
 
+    def contains(self, var):
+        if self.base.contains(var):
+            return True
+        elif self.exponent.contains(var):
+            return True
+        else:
+            return False

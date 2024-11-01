@@ -16,3 +16,15 @@ class Number(Expression):
 
     def expand(self):
         return self
+    
+    def contains(self, var):
+        return False
+    
+    # def simplify(self):
+    #     return self
+
+    def __eq__(self, other):
+        if isinstance(other, Number):
+            return self.number == other.number
+        else:
+            return False
