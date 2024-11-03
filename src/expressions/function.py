@@ -10,3 +10,9 @@ class Function():
 
     def __repr__(self):
         return self.name
+
+    def expand(self):
+        return self
+    
+    def contains(self, value):
+        return False
